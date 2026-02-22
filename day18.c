@@ -11,11 +11,11 @@ void reverse(int arr[], int start, int end) {
 }
 
 void rotate(int arr[], int n, int k) {
-    k = k % n; // Handles cases where k is larger than array size
+    k = k % n; 
     
-    reverse(arr, 0, n - 1);    // Reverse whole array
-    reverse(arr, 0, k - 1);    // Reverse first k elements
-    reverse(arr, k, n - 1);    // Reverse the rest
+    reverse(arr, 0, n - 1); 
+    reverse(arr, 0, k - 1);   
+    reverse(arr, k, n - 1);   
 }
 
 int main() {
