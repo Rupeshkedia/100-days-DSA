@@ -1,62 +1,41 @@
 #include <stdio.h>
-#include <limits.h>
 
-#define INF 1e9 // Using a large value for infinity
-
-void floydWarshall(int n, int graph[n][n]) {
-    int dist[n][n];
-
-    // Initialize the distance matrix with input graph values
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            if (i == j) {
-                dist[i][j] = 0;
-            } else if (graph[i][j] == -1) {
-                dist[i][j] = INF;
-            } else {
-                dist[i][j] = graph[i][j];
+void bubbleSort(int arr[], int n) {
+    int i, j, temp;
+    // Outer loop for each pass
+    for (i = 0; i < n - 1; i++) {
+        // Inner loop to compare adjacent elements
+        for (j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                // Swap if the element is greater than the next
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
             }
         }
-    }
-
-    // Triple nested loop to find shortest paths
-    for (int k = 0; k < n; k++) {
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                // If vertex k is on the shortest path from i to j, update dist[i][j]
-                if (dist[i][k] != INF && dist[k][j] != INF && 
-                    dist[i][k] + dist[k][j] < dist[i][j]) {
-                    dist[i][j] = dist[i][k] + dist[k][j];
-                }
-            }
-        }
-    }
-
-    // Print the final shortest distance matrix
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            if (dist[i][j] == INF) {
-                printf("INF ");
-            } else {
-                printf("%d ", dist[i][j]);
-            }
-        }
-        printf("\n");
     }
 }
 
 int main() {
-    int n;
+    int n, i;
+
+    // Input the size of the array
     if (scanf("%d", &n) != 1) return 0;
 
-    int graph[n][n];
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            scanf("%d", &graph[i][j]);
-        }
+    int arr[n];
+
+    // Input the n space-separated integers
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
     }
 
-    floydWarshall(n, graph);
+    bubbleSort(arr, n);
+
+    // Print the sorted array
+    for (i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
 
     return 0;
 }
