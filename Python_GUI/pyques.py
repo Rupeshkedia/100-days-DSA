@@ -18,7 +18,7 @@ def do_addition():
 
 # 2. THE BODY (Building the app window)
 root = tk.Tk()
-root.title("Addition Machine")
+root.title("Addition")
 root.geometry("300x200")
 
 # 3. THE PARTS (Creating boxes and buttons)
